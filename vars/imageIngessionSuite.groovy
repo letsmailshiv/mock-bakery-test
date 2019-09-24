@@ -11,6 +11,11 @@ def call(Map config=[:]) {
         println('Image Ingession source files -> ' + yamlPath)
         readYamlFile(yamlPath)
 
+        node {
+            stage('Example') {
+                    echo 'I only execute on the master branch'
+            }
+        }
         
     }
 }
