@@ -12,6 +12,7 @@ def call(Map config=[:]) {
         readYamlFile(yamlPath)
 
         stage('New stage') {
+            agent any
                 stages { 
                     stage('stage under stage') { 
                         steps {
