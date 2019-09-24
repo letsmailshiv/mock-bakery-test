@@ -56,8 +56,6 @@ def buildContainerImage(Map yamlData = [:]) {
 
 }
 def lintDockerFile(def dockerFilePath) {
-    container("hadolint") {
         echo "linting dockerfile  = ${dockerFilePath}"
         sh "hadolint ${dockerFilePath}"
-    }
 }
