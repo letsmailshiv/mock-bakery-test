@@ -11,15 +11,12 @@ def call(Map config=[:]) {
         println('Image Ingession source files -> ' + yamlPath)
         readYamlFile(yamlPath)
 
-        stage('New stage') {
-            agent any
-                stages { 
+        stages('New stage') {
                     stage('stage under stage') { 
                         steps {
                             echo "hello i am slave"
                         }
                     }
-                }
         }
         
     }
