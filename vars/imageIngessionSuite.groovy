@@ -11,12 +11,12 @@ def call(Map config=[:]) {
         println('Image Ingession source files -> ' + yamlPath)
         readYamlFile(yamlPath)
 
-        stages('New stage') {
-                    stage('stage under stage') { 
-                        steps {
-                            echo "hello i am slave"
-                        }
-                    }
+        stages {
+            stage('stage under stage') { 
+                steps {
+                    echo "hello i am slave"
+                }
+            }
         }
         
     }
