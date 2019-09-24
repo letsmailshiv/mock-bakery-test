@@ -13,7 +13,9 @@ def call(Map config=[:]) {
 
         node {
             stage('Example') {
+                container('docker') {
                     echo 'I only execute on the master branch'
+                }
             }
         }
         
