@@ -12,8 +12,12 @@ def call(Map config=[:]) {
         readYamlFile(yamlPath)
 
         stage('New stage') {
-                steps {
-                    echo "hello i am slave"
+                stages { 
+                    stage('stage under stage') { 
+                        steps {
+                            echo "hello i am slave"
+                        }
+                    }
                 }
         }
         
