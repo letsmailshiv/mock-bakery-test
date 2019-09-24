@@ -10,16 +10,6 @@ def call(Map config=[:]) {
         def yamlPath = "${env.WORKSPACE}/pipelines/conf/" + yamlName
         println('Image Ingession source files -> ' + yamlPath)
         readYamlFile(yamlPath)
-        pipeline {
-        agent any
-        stages {
-            stage('Even Stage') {
-            steps {
-                echo "The build number is even"
-            }
-            }
-        }
-        }
     }
 }
 
