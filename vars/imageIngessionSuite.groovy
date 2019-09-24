@@ -10,6 +10,13 @@ def call(Map config=[:]) {
         def yamlPath = "${env.WORKSPACE}/pipelines/conf/" + yamlName
         println('Image Ingession source files -> ' + yamlPath)
         readYamlFile(yamlPath)
+
+        stage('New stage') {
+                steps {
+                    echo "hello i am slave"
+                }
+        }
+        
     }
 }
 
