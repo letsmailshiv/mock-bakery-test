@@ -9,11 +9,12 @@ def call(Map config=[:]) {
     foundYamlFiles.each  { yamlName ->
         def yamlPath = "${env.WORKSPACE}/pipelines/conf/" + yamlName
         println('Image Ingession source files -> ' + yamlPath)
-        //readYamlFile(yamlPath)
+        def yamlContent = readYamlFile(yamlPath)
 
             stage('Lint Dockerfile') {
                 container('hadolint') {
-                    sh "echo hadolint "
+                    LintDockerFile dockerimage = new LintDockerFile();
+                    dockerimage.build(yamlContent.dockerFilePath)
                 }
             }
             stage('build Dockerfile') {
@@ -40,6 +41,8 @@ def readYamlFile(def readYamlFile) {
     String configPath = "${readYamlFile}"
     Map yamlData = readYaml file: configPath
     
+
+    return yamlData;
     echo "Inside readYamlFile function"
     if (yamlData.dockerFileExists == true) {
         lintDockerFile(yamlData.dockerFilePath)
@@ -76,8 +79,4 @@ def buildContainerImage(Map yamlData = [:]) {
 
     echo "Inside buildContainerImage  = ${dockerFileExists}"
 
-}
-def lintDockerFile(def dockerFilePath) {
-        echo "linting dockerfile  = ${dockerFilePath}"
-        sh "hadolint ${dockerFilePath}"
 }
