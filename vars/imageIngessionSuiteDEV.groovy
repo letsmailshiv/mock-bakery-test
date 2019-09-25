@@ -13,7 +13,7 @@ def call(Map config=[:]) {
                 PullImage dockerPull = new PullImage();
                 dockerPull.pull(data.dockerImage)
             }
-        */}
+        }*/
 
     }
     /*
