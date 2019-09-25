@@ -8,12 +8,12 @@ def call(Map config=[:]) {
     yamlData.images.each { data , image -> 
         println("imageName =>" + image)
         println("data =>" + data)
-        if (data.dockerFileExists == false) {
+        /*if (data.dockerFileExists == false) {
             container("docker"){ 
                 PullImage dockerPull = new PullImage();
                 dockerPull.pull(data.dockerImage)
             }
-        }
+        */}
 
     }
     /*
