@@ -5,8 +5,8 @@ def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
     Map yamlData = readYaml file: yamlFile
 
-    yamlData.images.each { data ,var -> 
-        println("key =>" + data.key)
+    yamlData.images.each { data , var -> 
+        println("key =>" + data)
         println("data =>" + var)
     }
     /*
