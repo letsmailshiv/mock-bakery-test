@@ -5,15 +5,15 @@ def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
     Map yamlData = readYaml file: yamlFile
 
-    yamlData.images.each { data , image -> 
+    yamlData.images.each { image, data  -> 
         println("imageName =>" + image)
         println("data =>" + data)
-        /*if (data.dockerFileExists == false) {
+        if (data.dockerFileExists == false) {
             container("docker"){ 
                 PullImage dockerPull = new PullImage();
                 dockerPull.pull(data.dockerImage)
             }
-        }*/
+        }
 
     }
     /*
