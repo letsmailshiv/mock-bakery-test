@@ -11,7 +11,6 @@ def call(Map config=[:]) {
         println('Image Ingession source files -> ' + yamlPath)
         //readYamlFile(yamlPath)
 
-        node {
             stage('Lint Dockerfile') {
                 container('hadolint') {
                     sh "echo hadolint "
@@ -34,7 +33,6 @@ def call(Map config=[:]) {
                 }
             }
             */
-        }
         
     }
 }
