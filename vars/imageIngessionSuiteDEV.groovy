@@ -5,9 +5,9 @@ def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
     Map yamlData = readYaml file: yamlFile
 
-    yamlData.images.each { data  -> 
+    yamlData.images.each { data ,var -> 
         println("key =>" + data.key)
-        println("data =>" + data.dockerFileExists)
+        println("data =>" + var)
     }
     /*
     def foundYamlFiles = sh(script: "ls -1 ${env.WORKSPACE}/pipelines/conf/", returnStdout: true).split()
