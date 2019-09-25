@@ -9,6 +9,7 @@ def call(Map config=[:]) {
     ImageIngessionSuite imageingession = new ImageIngessionSuite();
     imageingession.ingessionSuite(yamlData)
 
+}
 /*
 def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
