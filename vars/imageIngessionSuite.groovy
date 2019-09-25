@@ -12,9 +12,24 @@ def call(Map config=[:]) {
         readYamlFile(yamlPath)
 
         node {
-            stage('Example') {
+            stage('Lint Dockerfile') {
+                container('hadolint') {
+                    echo 'hadolint execution'
+                }
+            }
+            stage('build Dockerfile') {
                 container('docker') {
-                    echo 'I only execute on the master branch'
+                    echo 'build Dockerfile'
+                }
+            }
+            stage('Container Structure Test') {
+                container('structure-test') {
+                    echo 'Container Structure Test'
+                }
+            }
+            stage('Security Scan') {
+                container('docker') {
+                    echo 'Security Scan'
                 }
             }
         }
@@ -29,7 +44,7 @@ def readYamlFile(def readYamlFile) {
     
     echo "Inside readYamlFile function"
     if (yamlData.dockerFileExists == true) {
-            lintDockerFile(yamlData.dockerFilePath)
+        lintDockerFile(yamlData.dockerFilePath)
         buildContainerImage(yamlData)
     }
     else {
