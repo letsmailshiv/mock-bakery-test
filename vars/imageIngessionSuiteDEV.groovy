@@ -2,21 +2,25 @@ import com.jenkins.library.LintDockerFile
 //import groovy.io.FileType
 
 def call(Map config=[:]) {
-    def yamlDir = config.yamlDir ? config.yamlDir : "${env.WORKSPACE}/pipelines/conf/"
+    def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
+    Map yamlData = readYaml file: yamlFile
 
+    yamlData.images.each { data -> 
+        println(" = ${data}")
+    }
+    /*
     def foundYamlFiles = sh(script: "ls -1 ${env.WORKSPACE}/pipelines/conf/", returnStdout: true).split()
-
     foundYamlFiles.each  { yamlName ->
         def yamlPath = "${env.WORKSPACE}/pipelines/conf/" + yamlName
         println('Image Ingession source files -> ' + yamlPath)
         def yamlContent = readYamlFile(yamlPath)
 
-            stage('Lint Dockerfile') {
-                container('hadolint') {
-                    LintDockerFile dockerimage = new LintDockerFile();
-                    dockerimage.build(yamlContent.dockerFilePath)
-                }
-            }
+            //stage('Lint Dockerfile') {
+            //    container('hadolint') {
+            //        LintDockerFile dockerimage = new LintDockerFile();
+            //        dockerimage.build(yamlContent.dockerFilePath)
+            //    }
+            //}
             stage('build Dockerfile') {
                 container('docker') {
                     echo 'build Dockerfile'
@@ -34,6 +38,7 @@ def call(Map config=[:]) {
             }
         
     }
+    */
 }
 
 
