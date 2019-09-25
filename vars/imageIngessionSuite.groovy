@@ -16,7 +16,6 @@ def call(Map config=[:]) {
                     sh "echo hadolint "
                 }
             }
-            /*
             stage('build Dockerfile') {
                 container('docker') {
                     echo 'build Dockerfile'
@@ -32,7 +31,6 @@ def call(Map config=[:]) {
                     echo 'Security Scan'
                 }
             }
-            */
         
     }
 }
