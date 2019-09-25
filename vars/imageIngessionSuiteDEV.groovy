@@ -5,10 +5,16 @@ def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
     Map yamlData = readYaml file: yamlFile
 
-    yamlData.images.each { data , var -> 
-        println("imageName =>" + data)
-        println("data =>" + var)
-        println("data =>" + var.dockerFileExists)
+    yamlData.images.each { data , image -> 
+        println("imageName =>" + image)
+        println("data =>" + data)
+        if (data.dockerFileExists == false) {
+            container("docker"){ 
+                PullImage dockerPull = new PullImage();
+                dockerPull.pull(data.dockerImage)
+            }
+        }
+
     }
     /*
     def foundYamlFiles = sh(script: "ls -1 ${env.WORKSPACE}/pipelines/conf/", returnStdout: true).split()
@@ -71,9 +77,6 @@ def runSecurityScan() {
 }
 def runContainerStructureTest(def containerTestDir) {
     echo "Inside ContainerStructureTest = ${containerTestDir}"
-}
-def imagePullFunc(Map yamlData = [:]) { 
-    echo "Inside imagePullFunc  = ${yamlData.dockerImageLocation}"
 }
 def buildContainerImage(Map yamlData = [:]) {
 
