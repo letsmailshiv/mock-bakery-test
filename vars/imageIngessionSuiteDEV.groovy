@@ -1,4 +1,4 @@
-import com.jenkins.library.LintDockerFile
+import com.jenkins.library.PullImage
 //import groovy.io.FileType
 
 def call(Map config=[:]) {
