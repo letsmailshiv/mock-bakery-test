@@ -2,6 +2,7 @@ import com.jenkins.library.PullImage
 import com.jenkins.library.StructureTest
 import com.jenkins.library.AquaScan
 import com.jenkins.library.ImagePush
+import com.jenkins.library.Connection
 
 //import groovy.io.FileType
 
@@ -36,8 +37,10 @@ def call(Map config=[:]) {
         }
         stage("Image Push") { 
             container("docker"){ 
-                ImagePush push = new ImagePush();
-                push.upload(data)
+                Connection dockerregistry = new Connection();
+                dockerregistry.login(data)
+                ImagePush upload = new ImagePush();
+                upload.push(data)
             }
         }
     }
