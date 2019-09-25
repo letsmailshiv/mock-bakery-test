@@ -27,7 +27,7 @@ def call(Map config=[:]) {
             stage("AquaScan") { 
                 container("docker"){ 
                     AquaScan runScan = new AquaScan();
-                    AquaScan.runScan(data)
+                    runScan.runScan(data)
                 }
             }
         }
