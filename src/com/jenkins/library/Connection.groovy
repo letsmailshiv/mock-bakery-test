@@ -4,7 +4,7 @@ def login(Map config) {
     def REGISTRYCREDS = config.registrycreds
     def registry = config.registry
     println "Connecting with Docker Registry..."
-    withCredentials([usernamePassword(credentialsId: "${REGISTRYCREDS}", passwordVariable: 'registryPASS', usernameVariable: 'registryUSER')]) {
+    withCredentials([usernamePassword(credentialsId: "${REGISTRYCREDS}", passwordVariable: 'Password', usernameVariable: 'Username')]) {
         def status = sh(returnStatus: true, script: "docker login --username=${registryUSER} --password=${registryPASS} ${registry} > loginstatus.txt")
         if (status != 0) {
             println "Oops, The registry credentials you supplied are incorrect."
