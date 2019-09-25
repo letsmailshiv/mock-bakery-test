@@ -14,9 +14,10 @@ def call(Map config=[:]) {
         node {
             stage('Lint Dockerfile') {
                 container('hadolint') {
-                    echo 'hadolint execution'
+                    sh "hadolint ${dockerFilePath}"
                 }
             }
+            /*
             stage('build Dockerfile') {
                 container('docker') {
                     echo 'build Dockerfile'
@@ -32,6 +33,7 @@ def call(Map config=[:]) {
                     echo 'Security Scan'
                 }
             }
+            */
         }
         
     }
