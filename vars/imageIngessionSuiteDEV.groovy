@@ -1,4 +1,5 @@
 import com.jenkins.library.PullImage
+import com.jenkins.library.ContainerStructureTest
 //import groovy.io.FileType
 
 def call(Map config=[:]) {
@@ -6,12 +7,28 @@ def call(Map config=[:]) {
     Map yamlData = readYaml file: yamlFile
 
     yamlData.images.each { image, data  -> 
-        println("imageName =>" + image)
-        println("data =>" + data)
         if (data.dockerFileExists == false) {
-            container("docker"){ 
-                PullImage dockerPull = new PullImage();
-                dockerPull.pull(data.dockerImage)
+            stage("docker pull") { 
+                container("docker"){ 
+                    PullImage dockerPull = new PullImage();
+                    dockerPull.pull(data.dockerImage)
+                }
+            }
+        }
+        if (data.containerStructureTest == true) {
+            stage("Container Structure Test") { 
+                container("structure-test"){ 
+                    ContainerStructureTest structureTest = new ContainerStructureTest();
+                    structureTest.runTest(data)
+                }
+            }
+        }
+        if (data.securityScan == true) {
+            stage("AquaScan") { 
+                container("docker"){ 
+                    AquaScan runScan = new AquaScan();
+                    AquaScan.runScan(data)
+                }
             }
         }
 
