@@ -32,7 +32,12 @@ def call(Map config=[:]) {
                 }
             }
         }
-
+        stage("Image Push") { 
+            container("docker"){ 
+                ImagePush push = new ImagePush();
+                push.upload(data)
+            }
+        }
     }
 }
 
