@@ -7,9 +7,9 @@ def call(Map config=[:]) {
 
     yamlData.images.each { data  -> 
         println("key =>" + data.key )
-        println("dockerFileExists =>" + data["${data.key}"] )
-        println("dockerFileExists =>" + data[data.key].dockerFileExists )
-        println("dockerFileExists =>" + data[data.key].getClass() )
+        println("dockerFileExists =>" + data.A )
+        //println("dockerFileExists =>" + data[data.key].dockerFileExists )
+        //println("dockerFileExists =>" + data[data.key].getClass() )
     }
     /*
     def foundYamlFiles = sh(script: "ls -1 ${env.WORKSPACE}/pipelines/conf/", returnStdout: true).split()
