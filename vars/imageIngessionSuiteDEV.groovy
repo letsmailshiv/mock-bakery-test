@@ -1,4 +1,5 @@
 import com.jenkins.library.PullImage
+import com.jenkins.library.AquaScan
 import com.jenkins.library.ContainerStructureTest
 //import groovy.io.FileType
 
