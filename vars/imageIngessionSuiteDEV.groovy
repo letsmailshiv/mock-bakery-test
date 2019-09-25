@@ -7,7 +7,7 @@ def call(Map config=[:]) {
 
     yamlData.images.each { data  -> 
         println("key =>" + data.key )
-        println("dockerFileExists =>" + data[data.key] )
+        println("dockerFileExists =>" + data["${data.key}"] )
         println("dockerFileExists =>" + data[data.key].dockerFileExists )
         println("dockerFileExists =>" + data[data.key].getClass() )
     }
