@@ -18,7 +18,7 @@ def call(Map config=[:]) {
                 }
             }
         }
-        if (data.StructureTest == true) {
+        if (data.containerStructureTest == true) {
             stage("Container Structure Test") { 
                 container("structure-test"){ 
                     StructureTest structureTest = new StructureTest();
