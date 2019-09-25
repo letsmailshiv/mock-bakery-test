@@ -1,18 +1,12 @@
-import com.jenkins.library.ImageIngessionSuite
+import com.jenkins.library.PullImage
+import com.jenkins.library.StructureTest
+import com.jenkins.library.AquaScan
+import com.jenkins.library.ImagePush
+import com.jenkins.library.Connection
 
-//import groovy.io.FileType
+package com.jenkins.library
 
-def call(Map config=[:]) {
-    def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
-    Map yamlData = readYaml file: yamlFile
-
-    ImageIngessionSuite imageingession = new ImageIngessionSuite();
-    imageingession.ingessionSuite(yamlData)
-
-/*
-def call(Map config=[:]) {
-    def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngessionRequestDEV.yaml"
-    Map yamlData = readYaml file: yamlFile
+def ingessionSuite(Map yamlData=[:]) { 
 
     yamlData.images.each { image, data  -> 
         if (data.dockerFileExists == false) {
@@ -48,6 +42,6 @@ def call(Map config=[:]) {
             }
         }
     }
-}
-*/
 
+
+}
