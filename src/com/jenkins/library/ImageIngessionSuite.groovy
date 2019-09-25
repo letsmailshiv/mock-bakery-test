@@ -1,10 +1,10 @@
+package com.jenkins.library
 import com.jenkins.library.PullImage
 import com.jenkins.library.StructureTest
 import com.jenkins.library.AquaScan
 import com.jenkins.library.ImagePush
 import com.jenkins.library.Connection
 
-package com.jenkins.library
 
 def ingessionSuite(Map yamlData=[:]) { 
 
