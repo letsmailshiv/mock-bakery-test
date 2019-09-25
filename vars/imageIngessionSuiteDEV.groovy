@@ -1,6 +1,8 @@
 import com.jenkins.library.PullImage
-import com.jenkins.library.ContainerStructureTest
+import com.jenkins.library.StructureTest
 import com.jenkins.library.AquaScan
+import com.jenkins.library.ImagePush
+
 //import groovy.io.FileType
 
 def call(Map config=[:]) {
@@ -16,10 +18,10 @@ def call(Map config=[:]) {
                 }
             }
         }
-        if (data.containerStructureTest == true) {
+        if (data.StructureTest == true) {
             stage("Container Structure Test") { 
                 container("structure-test"){ 
-                    ContainerStructureTest structureTest = new ContainerStructureTest();
+                    StructureTest structureTest = new StructureTest();
                     structureTest.runTest(data)
                 }
             }
