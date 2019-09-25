@@ -9,12 +9,12 @@ def call(Map config=[:]) {
     foundYamlFiles.each  { yamlName ->
         def yamlPath = "${env.WORKSPACE}/pipelines/conf/" + yamlName
         println('Image Ingession source files -> ' + yamlPath)
-        readYamlFile(yamlPath)
+        //readYamlFile(yamlPath)
 
         node {
             stage('Lint Dockerfile') {
                 container('hadolint') {
-                    sh "hadolint ${dockerFilePath}"
+                    sh "echo hadolint "
                 }
             }
             /*
