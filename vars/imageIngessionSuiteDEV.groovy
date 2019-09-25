@@ -6,7 +6,7 @@ def call(Map config=[:]) {
     Map yamlData = readYaml file: yamlFile
 
     yamlData.images.eachWithIndex { data , index -> 
-        println("--" + data )
+        println("--" + data.key )
         //println("--" + yamlData.images[index].dockerFileExists )
     }
     /*
