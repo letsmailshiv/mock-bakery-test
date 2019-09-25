@@ -1,4 +1,4 @@
-//import com.jenkins.library.ParseImageRequestYamls
+import com.jenkins.library.LintDockerFile
 //import groovy.io.FileType
 
 def call(Map config=[:]) {
