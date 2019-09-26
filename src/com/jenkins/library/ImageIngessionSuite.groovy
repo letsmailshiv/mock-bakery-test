@@ -41,6 +41,17 @@ def ingessionSuite(Map yamlData=[:]) {
                 upload.push(data)
             }
         }
+        /*
+        stage("Post Processing") { 
+            container("docker"){ 
+                PostIngession process = new PostIngession();
+                process.postProcess(data)
+            }
+        }
+        */
+
+def PostIngession(def yamlSource,def yamlDest,def data[:] ) {
+
     }
 
 
