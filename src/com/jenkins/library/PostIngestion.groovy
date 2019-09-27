@@ -20,7 +20,7 @@ def postProcess(Map data=[:],def yamlPath) {
     > ${yamlSource}
     """
     //Git Commit
-    publishGitTag(credentialsId,gituser,gitemail){
+    publishGitTag(credentialsId,gituser,gitemail)
 }
 
 
