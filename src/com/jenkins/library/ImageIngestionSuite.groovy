@@ -46,7 +46,7 @@ def ingestionSuite(Map yamlData=[:]) {
         */
         stage("Post Processing") { 
             container("docker"){ 
-                Postingestion process = new Postingestion();
+                PostIngestion process = new PostIngestion();
                 process.postProcess(data)
             }
         }
