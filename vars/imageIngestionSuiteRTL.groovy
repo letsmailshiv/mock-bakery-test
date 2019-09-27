@@ -6,7 +6,7 @@ def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageingestionRequestRTL.yaml"
     Map yamlData = readYaml file: yamlFile
 
-    ImageingestionSuite imageingestion = new ImageingestionSuite();
+    ImageIngestionSuite imageingestion = new ImageIngestionSuite();
     imageingestion.ingestionSuite(yamlData)
     
 }
