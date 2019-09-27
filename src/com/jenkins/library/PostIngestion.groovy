@@ -30,6 +30,7 @@ def publishGitTag(credentialsId,gituser,gitemail){
         def tagCommand = """
                 git config --global user.email \"${gitemail}\"
                 git config --global user.name \"${gituser}\"
+                git checkout master
                 git add . 
                 git commit -m \"Updating yaml\"; 
                 git push;
