@@ -11,7 +11,7 @@ def postProcess(Map data=[:]) {
 
     //Move testcase 
     sh  """
-        mv ${testYamlPath} images/DEV/tests/
+        mv ${pwd()}/${testYamlPath} ${pwd()}/images/DEV/tests/
     """
 
     //Purge ingestionRequest
