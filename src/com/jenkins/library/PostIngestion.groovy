@@ -1,5 +1,5 @@
 package com.jenkins.library
-//This is to build the docker image using buildah on container itself.
+//This function will move changes to ingestedImages.yaml
 def postProcess(Map data=[:],def yamlPath) {
     testYamlPath= "${data.containerStructureTestPath}"
     yamlSource= "${yamlPath}"
@@ -20,12 +20,12 @@ def postProcess(Map data=[:],def yamlPath) {
     > ${yamlSource}
     """
     //Git Commit
-    publishGitTag(credentialsId,gituser,gitemail)
+    commitChange(credentialsId,gituser,gitemail)
 }
 
 
-def publishGitTag(credentialsId,gituser,gitemail){
-    //GIT tag
+def commitChange(credentialsId,gituser,gitemail){
+    //GIT push
     withCredentials([[$class: 'SSHUserPrivateKeyBinding', keyFileVariable: 'gitKey', passphraseVariable: 'gitKeyPass', credentialsId: credentialsId]]) {
         def tagCommand = """
                 git config --global user.email \"${gitemail}\"
@@ -39,7 +39,7 @@ def publishGitTag(credentialsId,gituser,gitemail){
                 chmod 600 ${env.gitKey}; 
                 eval `ssh-agent`; 
                 mkdir -p ~/.ssh
-                ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+                ssh-keyscan -t rsa ${gitRepoHostname} >> ~/.ssh/known_hosts
                 ssh-add ${env.gitKey};
                 ${tagCommand}
                 kill -s term \$SSH_AGENT_PID
