@@ -8,7 +8,7 @@ def call(Map config=[:]) {
 
     if(yamlData.images==null)
     {
-        echo "INFO: Yaml file is empty. no action needed"
+        echo "INFO: ${yamlFile} Yaml is empty. no action needed"
     }
     else {
         ImageIngestionSuite imageingestion = new ImageIngestionSuite();
