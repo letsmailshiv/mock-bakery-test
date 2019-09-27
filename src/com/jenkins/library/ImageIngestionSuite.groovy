@@ -10,7 +10,6 @@ import com.jenkins.library.PostIngestion
 def ingestionSuite(Map yamlData=[:],def yamlPath) { 
 
     yamlData.images.each { image, data  -> 
-        /*
         if (data.dockerFileExists == false) {
             stage("docker pull") { 
                 container("docker"){ 
@@ -36,6 +35,9 @@ def ingestionSuite(Map yamlData=[:],def yamlPath) {
             }
         }
         stage("Image Push") { 
+			when {
+				expression { gitWorkFlow == 'integration-branch' }
+			}
             container("docker"){ 
                 Connection dockerregistry = new Connection();
                 dockerregistry.login(data)
@@ -43,8 +45,10 @@ def ingestionSuite(Map yamlData=[:],def yamlPath) {
                 upload.push(data)
             }
         }
-        */
         stage("Post Processing") { 
+			when {
+				expression { gitWorkFlow == 'integration-branch' }
+			}
             container("utility"){ 
                 PostIngestion process = new PostIngestion();
                 process.postProcess(data,yamlPath)
