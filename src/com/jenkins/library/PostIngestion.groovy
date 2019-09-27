@@ -3,7 +3,7 @@ package com.jenkins.library
 def postProcess(Map data=[:],def yamlPath) {
     testYamlPath= "${data.containerStructureTestPath}"
     yamlSource= "${yamlPath}"
-    yamlDest= "${pwd()}/images/DEV/ingessedImages.yaml"
+    yamlDest= "${pwd()}/images/DEV/ingestedImages.yaml"
     //Merge back change to master records.
     yamlMerge(
         sourceFile: "${yamlSource}",
