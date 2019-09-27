@@ -7,7 +7,7 @@ import com.jenkins.library.Connection
 import com.jenkins.library.PostIngestion
 
 
-def ingestionSuite(Map yamlData=[:]) { 
+def ingestionSuite(Map yamlData=[:],def yamlPath) { 
 
     yamlData.images.each { image, data  -> 
         /*
@@ -47,7 +47,7 @@ def ingestionSuite(Map yamlData=[:]) {
         stage("Post Processing") { 
             container("docker"){ 
                 PostIngestion process = new PostIngestion();
-                process.postProcess(data)
+                process.postProcess(data,yamlPath)
             }
         }
 

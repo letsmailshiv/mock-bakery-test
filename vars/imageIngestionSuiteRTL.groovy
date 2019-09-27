@@ -7,7 +7,7 @@ def call(Map config=[:]) {
     Map yamlData = readYaml file: yamlFile
     yamlFile.yamlPath = yamlFile
     ImageIngestionSuite imageingestion = new ImageIngestionSuite();
-    imageingestion.ingestionSuite(yamlData)
+    imageingestion.ingestionSuite(yamlData,yamlFile)
     
 }
 
