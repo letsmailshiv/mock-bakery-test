@@ -6,8 +6,9 @@ def postProcess(Map data=[:],def yamlPath) {
     yamlDest= "${pwd()}/images/DEV/ingestedImages.yaml"
     //Merge back change to master records.
     yamlMerge(
-        sourceFile: "${yamlSource}",
-        destFile: "${yamlDest}",
+        fileA: "${yamlSource}",
+        fileB: "${yamlDest}",
+        mergedFile: "${yamlDest}"
     )
     //Move testcase 
     sh  """
