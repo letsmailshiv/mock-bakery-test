@@ -1,4 +1,4 @@
-import com.jenkins.library.ImageingestionSuite
+import com.jenkins.library.ImageIngestionSuite
 
 //import groovy.io.FileType
 
