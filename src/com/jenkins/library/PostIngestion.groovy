@@ -17,7 +17,7 @@ def postProcess(Map data=[:],def yamlPath) {
 
     //Purge ingestionRequest
     sh """
-    echo 'images: null'> ${yamlSource}
+    echo 'images: null' > ${yamlSource}
     """
     //Git Commit
     commitChange(credentialsId,gituser,gitemail)
