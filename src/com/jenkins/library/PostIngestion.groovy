@@ -39,7 +39,6 @@ def publishGitTag(credentialsId,gituser,gitemail){
                 chmod 600 ${env.gitKey}; 
                 eval `ssh-agent`; 
                 mkdir -p ~/.ssh
-                ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
                 ssh-add ${env.gitKey};
                 ${tagCommand}
                 kill -s term \$SSH_AGENT_PID
