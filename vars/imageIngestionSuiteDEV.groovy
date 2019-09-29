@@ -7,6 +7,7 @@ def call(Map config=[:]) {
     Map yamlData = readYaml file: yamlFile
     yamlData.put('imageType','RTL');
     yamlData.put('yamlPath',"${yamlFile}");
+
     if(yamlData.images==null)
     {
         echo "INFO: ${yamlFile} Yaml is empty."
@@ -17,7 +18,3 @@ def call(Map config=[:]) {
         imageingestion.ingestionSuite(yamlData)
     }    
 }
-
-
-}
-
