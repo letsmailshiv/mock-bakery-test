@@ -18,20 +18,16 @@ def ingestionSuite(Map yamlData=[:],def yamlPath) {
                 }
             }
         }
-        if (data.containerStructureTest == true) {
-            stage("Container Structure Test") { 
-                container("structure-test"){ 
-                    StructureTest structureTest = new StructureTest();
-                    structureTest.runTest(data)
-                }
+        stage("Container Structure Test") { 
+            container("structure-test"){ 
+                StructureTest structureTest = new StructureTest();
+                structureTest.runTest(data)
             }
         }
-        if (data.securityScan == true) {
-            stage("TODO: AquaScan") { 
-                container("docker"){ 
-                    AquaScan scan = new AquaScan();
-                    scan.runScan(data)
-                }
+        stage("TODO: AquaScan") { 
+            container("docker"){ 
+                AquaScan scan = new AquaScan();
+                scan.runScan(data)
             }
         }
         stage("Image Push") { 
