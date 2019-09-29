@@ -17,7 +17,20 @@ def ingestionSuite(Map yamlData=[:]) {
                     dockerPull.pull(data.dockerImage)
                 }
             }
+            else{
+                stage("Lint n Build") { 
+                    container("hadolint"){ 
+                        LintDockerFile lintDocker = new LintDockerFile();
+                        lintDocker.lint(data.dockerFileLocation)
+                    }
+                    /*container("docker"){ 
+                        Build dockerBuild = new Build();
+                        dockerBuild.build(data.dockerFileLocation)
+                    }*/
+                }
+            }
         }
+        /*
         stage("Container Structure Test") { 
             container("structure-test"){ 
                 StructureTest structureTest = new StructureTest();
@@ -50,5 +63,6 @@ def ingestionSuite(Map yamlData=[:]) {
                 }
             }
         }
+        */
     }
 }

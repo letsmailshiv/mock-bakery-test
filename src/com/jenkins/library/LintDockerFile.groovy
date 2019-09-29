@@ -1,5 +1,8 @@
 package com.jenkins.library
 //This is to build the docker image using buildah on container itself.
 def LintDockerFile(def dockerFilePath) {
-    sh "echo TODO: Add code for dockerfile linting"
+    sh """
+    echo INFO: Linting dockerfile
+    hadolint ${dockerFilePath}
+    """    
 }
