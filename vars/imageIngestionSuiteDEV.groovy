@@ -5,7 +5,7 @@ import com.jenkins.library.ImageIngestionSuite
 def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngestionRequestDEV.yaml"
     Map yamlData = readYaml file: yamlFile
-    yamlData.put('imageType','RTL');
+    yamlData.put('imageType','DEV');
     yamlData.put('yamlPath',"${yamlFile}");
 
     if(yamlData.images==null)
