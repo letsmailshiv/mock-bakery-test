@@ -35,26 +35,24 @@ def ingestionSuite(Map yamlData=[:],def yamlPath) {
             }
         }
         stage("Image Push") { 
-			when {
-				expression { gitWorkFlow == 'integration-branch' }
-			}
-            container("docker"){ 
-                Connection dockerregistry = new Connection();
-                dockerregistry.login(data)
-                ImagePush upload = new ImagePush();
-                upload.push(data)
+			if(gitWorkFlow == 'integration-branch')
+			{
+                container("docker"){ 
+                    Connection dockerregistry = new Connection();
+                    dockerregistry.login(data)
+                    ImagePush upload = new ImagePush();
+                    upload.push(data)
+                }
             }
         }
         stage("Post Processing") { 
-			when {
-				expression { gitWorkFlow == 'integration-branch' }
-			}
-            container("utility"){ 
-                PostIngestion process = new PostIngestion();
-                process.postProcess(data,yamlPath)
+			if(gitWorkFlow == 'integration-branch')
+			{
+                container("utility"){ 
+                    PostIngestion process = new PostIngestion();
+                    process.postProcess(data,yamlPath)
+                }
             }
         }
-
-
     }
 }
