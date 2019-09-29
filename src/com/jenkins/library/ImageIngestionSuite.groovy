@@ -30,10 +30,10 @@ def ingestionSuite(Map yamlData=[:]) {
                 container("docker"){ 
                     Connection dockerregistry = new Connection();
                     dockerregistry.login(data)
-                    stash includes: "/root/.docker", name: 'dockerConfig'
+                    //stash includes: "/root/.docker", name: 'dockerConfig'
                 }
                 container("kaniko"){ 
-                    unstash 'dockerConfig'
+                    //unstash 'dockerConfig'
                     BuildItKaniko imageBuild = new BuildItKaniko();
                     imageBuild.buildit(data.dockerFileLocation)
                 }
