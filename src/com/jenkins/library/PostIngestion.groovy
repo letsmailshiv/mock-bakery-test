@@ -6,8 +6,9 @@ def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     singleYaml="/tmp/singleImage.yaml"
     yamlDest= "${pwd()}/images/${imageType}/ingestedImages.yaml"
     //Merge back change to master records.
-    //sh "rm -rf ${singleYaml}"
+    sh "rm -rf ${singleYaml}"
     writeYaml file: "${singleYaml}", data: ["image":["${image}":data]]
+    sh "cat ${singleYaml}"
     yamlMerge(
         fileA: "${singleYaml}",
         fileB: "${yamlDest}",
