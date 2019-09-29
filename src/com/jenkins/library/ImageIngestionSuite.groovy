@@ -20,21 +20,24 @@ def ingestionSuite(Map yamlData=[:]) {
             }
         }
         else{
-            stage("Build Image") { 
-                container("kaniko"){ 
-                    echo "Hello"
-                    BuildItKaniko imageBuild = new BuildItKaniko();
-                    imageBuild.buildit(data.dockerFileLocation)
-                }
-            }
             stage("Lint Dockerfile") { 
                 container("hadolint"){ 
                     LintDockerFile lintDocker = new LintDockerFile();
                     lintDocker.lint(data.dockerFileLocation)
                 }
             }
+            stage("Build Image") { 
+                container("docker"){ 
+                    Connection dockerregistry = new Connection();
+                    dockerregistry.login(data)
+                    sh "sleep 1500"
+                }
+                container("kaniko"){ 
+                    BuildItKaniko imageBuild = new BuildItKaniko();
+                    imageBuild.buildit(data.dockerFileLocation)
+                }
+            }
         }
-        /*
         stage("Container Structure Test") { 
             container("structure-test"){ 
                 StructureTest structureTest = new StructureTest();
@@ -58,6 +61,7 @@ def ingestionSuite(Map yamlData=[:]) {
                 }
             }
         }
+        /*
         stage("Post Processing") { 
 			if(gitWorkFlow == 'integration-branch')
 			{
