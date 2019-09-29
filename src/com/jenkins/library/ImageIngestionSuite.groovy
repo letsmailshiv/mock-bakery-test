@@ -20,17 +20,17 @@ def ingestionSuite(Map yamlData=[:]) {
             }
         }
         else{
-            stage("Lint Dockerfile") { 
-                container("hadolint"){ 
-                    LintDockerFile lintDocker = new LintDockerFile();
-                    lintDocker.lint(data.dockerFileLocation)
-                }
-            }
             stage("Build Image") { 
                 container("kaniko"){ 
                     echo "Hello"
                     BuildIt imageBuild = new BuildIt();
                     imageBuild.buildit(data.dockerFileLocation)
+                }
+            }
+            stage("Lint Dockerfile") { 
+                container("hadolint"){ 
+                    LintDockerFile lintDocker = new LintDockerFile();
+                    lintDocker.lint(data.dockerFileLocation)
                 }
             }
         }
