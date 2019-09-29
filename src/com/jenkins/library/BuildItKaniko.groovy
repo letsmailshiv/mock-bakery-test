@@ -3,7 +3,7 @@ package com.jenkins.library
 def buildit(def dockerFilePath) {
     sh """
         echo INFO: Linting dockerfile
-        echo kaniko --dockerfile=${pwd()}/${dockerFilePath} --context=${pwd()}/pipelines/conf --no-push
+        /kaniko/executor --dockerfile=${pwd()}/${dockerFilePath} --context=${pwd()}/pipelines/conf --no-push
         sleep 1500
     """    
 }
