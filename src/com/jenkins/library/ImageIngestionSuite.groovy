@@ -21,7 +21,7 @@ def ingestionSuite(Map yamlData=[:]) {
         }
         else{
             stage("Build Image") { 
-                container("kaniko"){ 
+                container("docker"){ 
                     echo "Hello"
                     BuildItKaniko imageBuild = new BuildItKaniko();
                     imageBuild.buildit(data.dockerFileLocation)
