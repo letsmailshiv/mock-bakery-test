@@ -24,10 +24,10 @@ def ingestionSuite(Map yamlData=[:]) {
                     LintDockerFile lintDocker = new LintDockerFile();
                     lintDocker.lint(data.dockerFileLocation)
                 }
-                /*container("docker"){ 
-                    Build dockerBuild = new Build();
-                    dockerBuild.build(data.dockerFileLocation)
-                }*/
+                container("kaniko"){ 
+                    Build imageBuild = new Build();
+                    imageBuild.build(data.dockerFileLocation)
+                }
             }
         }
         /*
