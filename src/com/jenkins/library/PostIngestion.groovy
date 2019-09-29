@@ -1,9 +1,9 @@
 package com.jenkins.library
 //This function will move changes to ingestedImages.yaml
-def postProcess(Map data=[:],def yamlPath) {
+def postProcess(Map data=[:],def yamlPath,def imageType) {
     testYamlPath= "${data.containerStructureTestPath}"
     yamlSource= "${yamlPath}"
-    yamlDest= "${pwd()}/images/DEV/ingestedImages.yaml"
+    yamlDest= "${pwd()}/images/${imageType}/ingestedImages.yaml"
     //Merge back change to master records.
     yamlMerge(
         fileA: "${yamlSource}",
@@ -12,7 +12,7 @@ def postProcess(Map data=[:],def yamlPath) {
     )
     //Move testcase 
     sh  """
-        mkdir -p ${pwd()}/images/DEV/tests/ && mv ${pwd()}/${testYamlPath} ${pwd()}/images/DEV/tests/
+        mkdir -p ${pwd()}/images/${imageType}/tests/ && mv ${pwd()}/${testYamlPath} ${pwd()}/images/${imageType}/tests/
     """
 
     //Purge ingestionRequest
