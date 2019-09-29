@@ -26,8 +26,9 @@ def ingestionSuite(Map yamlData=[:]) {
                     lintDocker.lint(data.dockerFileLocation)
                 }
                 container("kaniko"){ 
-                    Build imageBuild = new Build();
-                    imageBuild.build(data.dockerFileLocation)
+                    echo "Hello"
+                    //Build imageBuild = new Build();
+                    //imageBuild.build(data.dockerFileLocation)
                 }
             }
         }
