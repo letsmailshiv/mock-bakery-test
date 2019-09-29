@@ -3,7 +3,7 @@ package com.jenkins.library
 def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     testYamlPath= "${data.containerStructureTestPath}"
     yamlSource= "${yamlPath}"
-    singleYaml="/tmp/singleImage.yaml"
+    singleYaml="singleImage.yaml"
     yamlDest= "${pwd()}/images/${imageType}/ingestedImages.yaml"
     //Merge back change to master records.
     sh "rm -rf ${singleYaml}"
