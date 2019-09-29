@@ -28,14 +28,9 @@ def ingestionSuite(Map yamlData=[:]) {
             }
             stage("Build Image") { 
                 container("docker"){ 
-                    Connection dockerregistry = new Connection();
-                    dockerregistry.login(data)
-                    //stash includes: "/root/.docker", name: 'dockerConfig'
-                }
-                container("kaniko"){ 
                     //unstash 'dockerConfig'
-                    BuildItKaniko imageBuild = new BuildItKaniko();
-                    imageBuild.buildit(data.dockerFileLocation)
+                    BuildIt imageBuild = new BuildIt();
+                    imageBuild.buildit(data.dockerFileLocation,data.dockerImage)
                 }
             }
         }
@@ -62,7 +57,6 @@ def ingestionSuite(Map yamlData=[:]) {
                 }
             }
         }
-        /*
         stage("Post Processing") { 
 			if(gitWorkFlow == 'integration-branch')
 			{
@@ -72,6 +66,5 @@ def ingestionSuite(Map yamlData=[:]) {
                 }
             }
         }
-        */
     }
 }
