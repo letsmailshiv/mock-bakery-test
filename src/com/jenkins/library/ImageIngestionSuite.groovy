@@ -6,7 +6,7 @@ import com.jenkins.library.ImagePush
 import com.jenkins.library.Connection
 import com.jenkins.library.PostIngestion
 import com.jenkins.library.LintDockerFile
-import com.jenkins.library.BuildIt
+import com.jenkins.library.BuildItKaniko
 
 def ingestionSuite(Map yamlData=[:]) { 
 
@@ -23,7 +23,7 @@ def ingestionSuite(Map yamlData=[:]) {
             stage("Build Image") { 
                 container("kaniko"){ 
                     echo "Hello"
-                    BuildIt imageBuild = new BuildIt();
+                    BuildItKaniko imageBuild = new BuildItKaniko();
                     imageBuild.buildit(data.dockerFileLocation)
                 }
             }
