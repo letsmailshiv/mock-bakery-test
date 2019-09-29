@@ -5,7 +5,7 @@ import com.jenkins.library.AquaScan
 import com.jenkins.library.ImagePush
 import com.jenkins.library.Connection
 import com.jenkins.library.PostIngestion
-
+import com.jenkins.library.LintDockerFile
 
 def ingestionSuite(Map yamlData=[:]) { 
 
