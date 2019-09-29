@@ -3,14 +3,13 @@ package com.jenkins.library
 def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     testYamlPath= "${data.containerStructureTestPath}"
     yamlSource= "${yamlPath}"
+    singleYaml="/tmp/singleImage.yaml"
     yamlDest= "${pwd()}/images/${imageType}/ingestedImages.yaml"
     //Merge back change to master records.
-    sh "rm -rf datas.yaml"
-    writeYaml file: 'datas.yaml', data: ["image":["${image}":data]]
-    sh "cat datas.yaml"
-    /*
+    sh "rm -rf ${singleYaml}"
+    writeYaml file: "${singleYaml}", data: ["image":["${image}":data]]
     yamlMerge(
-        fileA: "${yamlSource}",
+        fileA: "${singleYaml}",
         fileB: "${yamlDest}",
         mergedFile: "${yamlDest}"
     )
@@ -30,7 +29,6 @@ def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     """
     //Git Commit
     commitChange(credentialsId,gituser,gitemail)
-    */
 }
 
 
