@@ -20,7 +20,8 @@ def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     """
     if (data.dockerFileExists == true) {
         sh  """
-            mv ${pwd()}/${data.dockerFileLocation} ${pwd()}/images/${imageType}/${image}/Dockerfile
+            cp -r ${pwd()}/${data.dockerFileLocation} ${pwd()}/images/${imageType}/${image}/Dockerfile
+            rm -rf ${pwd()}/${data.dockerFileLocation}
         """
     }
 
