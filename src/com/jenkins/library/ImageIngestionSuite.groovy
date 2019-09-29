@@ -62,7 +62,7 @@ def ingestionSuite(Map yamlData=[:]) {
 			{
                 container("utility"){ 
                     PostIngestion process = new PostIngestion();
-                    process.postProcess(data,yamlData.yamlPath,yamlData.imageType)
+                    process.postProcess(data,yamlData.yamlPath,yamlData.imageType,image)
                 }
             }
         }

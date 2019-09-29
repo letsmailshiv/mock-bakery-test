@@ -1,6 +1,6 @@
 package com.jenkins.library
 //This function will move changes to ingestedImages.yaml
-def postProcess(Map data=[:],def yamlPath,def imageType) {
+def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     testYamlPath= "${data.containerStructureTestPath}"
     yamlSource= "${yamlPath}"
     yamlDest= "${pwd()}/images/${imageType}/ingestedImages.yaml"
@@ -12,8 +12,14 @@ def postProcess(Map data=[:],def yamlPath,def imageType) {
     )
     //Move testcase 
     sh  """
-        mkdir -p ${pwd()}/images/${imageType}/tests/ && mv ${pwd()}/${testYamlPath} ${pwd()}/images/${imageType}/tests/
+        mkdir -p ${pwd()}/images/${imageType}/${image}/tests/ && mv ${pwd()}/${testYamlPath} ${pwd()}/images/${imageType}/${image}/tests/
     """
+    if (data.dockerFileExists == false) {
+    sh  """
+        mv ${pwd()}/${data.dockerFileLocation} ${pwd()}/images/${imageType}/${image}/Dockerfile
+    """
+
+    }
 
     //Purge ingestionRequest
     sh """
