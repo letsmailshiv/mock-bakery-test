@@ -14,11 +14,10 @@ def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     sh  """
         mkdir -p ${pwd()}/images/${imageType}/${image}/tests/ && mv ${pwd()}/${testYamlPath} ${pwd()}/images/${imageType}/${image}/tests/
     """
-    if (data.dockerFileExists == false) {
-    sh  """
-        mv ${pwd()}/${data.dockerFileLocation} ${pwd()}/images/${imageType}/${image}/Dockerfile
-    """
-
+    if (data.dockerFileExists == true) {
+        sh  """
+            mv ${pwd()}/${data.dockerFileLocation} ${pwd()}/images/${imageType}/${image}/Dockerfile
+        """
     }
 
     //Purge ingestionRequest
