@@ -27,6 +27,7 @@ def postProcess(Map data=[:],def yamlPath,def imageType) {
 def commitChange(credentialsId,gituser,gitemail){
     //GIT push
     withCredentials([[$class: 'SSHUserPrivateKeyBinding', keyFileVariable: 'gitKey', passphraseVariable: 'gitKeyPass', credentialsId: credentialsId]]) {
+    //withCredentials([sshUserPrivateKey(credentialsId: credentialsId, keyFileVariable: 'gitKey')]) {
         def tagCommand = """
                 git config --global user.email \"${gitemail}\"
                 git config --global user.name \"${gituser}\"
