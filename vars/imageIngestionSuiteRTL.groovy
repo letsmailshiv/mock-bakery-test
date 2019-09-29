@@ -6,7 +6,7 @@ def call(Map config=[:]) {
     def yamlFile = config.yamlFile ? config.yamlFile : "${env.WORKSPACE}/pipelines/conf/imageIngestionRequestRTL.yaml"
     Map yamlData = readYaml file: yamlFile
     yamlData.put('imageType','DEV');
-    println("yamlData "+ yamlData.getClass())
+    println("yamlData "+ yamlData + yamlData.getClass())
     if(yamlData.images==null)
     {
         echo "INFO: ${yamlFile} Yaml is empty."
