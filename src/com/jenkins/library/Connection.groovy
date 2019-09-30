@@ -1,8 +1,8 @@
 package com.jenkins.library
 //This is to login onto registry to pull/push the images onto it.
 def login(def registry, def registrycreds) {
-    def registrycreds = registrycreds
-    def registry = registry
+    //def registrycreds = registrycreds
+    //def registry = registry
     println("registrycreds = ${registrycreds}")
     println("registrycreds = ${registry}")
     println "Connecting with Docker Registry..."
