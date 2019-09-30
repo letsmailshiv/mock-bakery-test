@@ -11,6 +11,7 @@ import com.jenkins.library.BuildItKaniko
 def ingestionSuite(Map yamlData=[:]) { 
 
     yamlData.images.each { image, data  -> 
+        println("-----" + image + "  " + data)
         /*
         if (data.dockerFileExists == false) {
             stage("docker pull") { 
