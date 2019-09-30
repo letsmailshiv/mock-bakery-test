@@ -16,9 +16,9 @@ def call(Map config=[:]) {
 
         yamlData.put('imageType','RTL');
         yamlData.put('yamlPath',"${yamlFile}");
-        yamlData.images.registry = "harbor.instg.pscloudhub.com"
-        yamlData.images.registryProject = "global-bakery-rtl"
-        yamlData.images.dockerImage = "rtl-robot"
+        yamlData.put('registry',"harbor.instg.pscloudhub.com")
+        yamlData.put('registryProject',"global-bakery-rtl")
+        yamlData.put('registrycreds',"rtl-robot")
 
         ImageIngestionSuite imageingestion = new ImageIngestionSuite();
         imageingestion.ingestionSuite(yamlData)

@@ -16,9 +16,9 @@ def call(Map config=[:]) {
         yamlData.put('imageType','DEV');
         yamlData.put('yamlPath',"${yamlFile}");
         //For pushimg image
-        yamlData.images.registry = "harbor.instg.pscloudhub.com"
-        yamlData.images.registryProject = "global-bakery-dev"
-        yamlData.images.dockerImage = "dev-robot"
+        yamlData.put('registry',"harbor.instg.pscloudhub.com")
+        yamlData.put('registryProject',"global-bakery-dev")
+        yamlData.put('registrycreds',"dev-robot")
 
         ImageIngestionSuite imageingestion = new ImageIngestionSuite();
         imageingestion.ingestionSuite(yamlData)

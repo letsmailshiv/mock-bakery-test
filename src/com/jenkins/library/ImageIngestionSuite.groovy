@@ -11,8 +11,6 @@ import com.jenkins.library.BuildItKaniko
 def ingestionSuite(Map yamlData=[:]) { 
 
     yamlData.images.each { image, data  -> 
-        println("-----" + image + "  " + data)
-        /*
         if (data.dockerFileExists == false) {
             stage("docker pull") { 
                 container("docker"){ 
@@ -53,13 +51,12 @@ def ingestionSuite(Map yamlData=[:]) {
 			{
                 container("docker"){ 
                     Connection dockerregistry = new Connection();
-                    dockerregistry.login(data)
-                    //ImagePush upload = new ImagePush();
-                    //upload.push(data)
+                    dockerregistry.login(yamlData.registry yamlData.registrycreds)
+                    ImagePush upload = new ImagePush();
+                    upload.push(data,yamlData.registry,yamlData.registryProject)
                 }
             }
         }
-        */
         stage("Post Processing") { 
 			if(gitWorkFlow == 'integration-branch')
 			{

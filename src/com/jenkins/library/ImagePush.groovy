@@ -1,9 +1,9 @@
 package com.jenkins.library
 
-def push(Map data=[:]) { 
+def push(Map data=[:],def registry, def registryProject) { 
     println "Publishing the newly created docker image onto registry..."
-    def registry = data.registry
-    def registryProject = data.registryProject
+    def registry = registry
+    def registryProject = registryProject
     def dockerImage = data.dockerImage
     sh """ 
         docker tag ${dockerImage} ${registry}/${registryProject}/${dockerImage}
