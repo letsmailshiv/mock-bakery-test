@@ -30,11 +30,11 @@ def postProcess(Map data=[:],def yamlPath,def imageType,def image) {
     echo 'images: null' > ${yamlSource}
     """
     //Git Commit
-    commitChange(credentialsId,gituser,gitemail)
+    commitChange(credentialsId,gituser,gitemail,image)
 }
 
 
-def commitChange(credentialsId,gituser,gitemail){
+def commitChange(credentialsId,gituser,gitemail,image){
     //GIT push
     withCredentials([[$class: 'SSHUserPrivateKeyBinding', keyFileVariable: 'gitKey', passphraseVariable: 'gitKeyPass', credentialsId: credentialsId]]) {
     //withCredentials([sshUserPrivateKey(credentialsId: credentialsId, keyFileVariable: 'gitKey')]) {
@@ -43,7 +43,7 @@ def commitChange(credentialsId,gituser,gitemail){
                 git config --global user.name \"${gituser}\"
                 git checkout master
                 git add . 
-                git commit -m \"Updating yaml\"; 
+                git commit -m \"Ingested ${image} Image\"; 
                 git push;
             """
         def cmd = """
