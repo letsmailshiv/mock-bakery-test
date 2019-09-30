@@ -51,7 +51,7 @@ def ingestionSuite(Map yamlData=[:]) {
 			{
                 container("docker"){ 
                     Connection dockerregistry = new Connection();
-                    dockerregistry.login(yamlData.registry yamlData.registrycreds)
+                    dockerregistry.login(yamlData.registry,yamlData.registrycreds)
                     ImagePush upload = new ImagePush();
                     upload.push(data,yamlData.registry,yamlData.registryProject)
                 }
